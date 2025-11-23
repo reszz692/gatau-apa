@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Web2APK Builder Premium - Razor Official</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Konversi website ke APK dengan mudah dan gratis"> 
+  <meta name="google-site-verification" content="mpZXVrORh_EsUHsFjdu0GumjK0Utz1y-Q5KM7buBxAY" />
+  <meta name="keywords" content="website, toapp, konvert, web2app, konvertWebToapk, konverting, konvert, free">
+  <meta name="author" content="Reseller Gaming">
+  <meta property="og:title" content="Web2App Builder Premium">
+  <meta property="og:description" content="Konversi link website ke APK dengan fitur premium">
+  <meta property="og:image" content="https://example.com/preview.png">
+  <meta property="og:url" content="www.web2app.zone.id">
+  <meta property="og:type" content="website">
+  <meta name="robots" content="index, follow">
+  <link rel="shortcut icon" href="https://files.catbox.moe/dcujb8.jpg" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #4361ee;
+      --primary-dark: #3a56d4;
+      --primary-light: #e0e7ff;
+      --danger: #ef4444;
+      --dark: #1e293b;
+      --darker: #0f172a;
+      --light: #f8fafc;
+      --gray: #64748b;
+      --gray-light: #e2e8f0;
+      --success: #22c55e;
+      --accent: #8b5cf6;
+      --accent-gradient: linear-gradient(135deg, #4361ee, #8b5cf6);
+      --glow: 0 0 15px rgba(67, 97, 238, 0.5);
+    }
+    
+    * { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0; 
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, var(--darker), #1e293b);
+      color: var(--light);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+      position: relative;
+      overflow-x: hidden;
+    }
+    
+    /* Background animation */
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 10% 20%, rgba(67, 97, 238, 0.1) 0%, transparent 20%),
+        radial-gradient(circle at 90% 70%, rgba(139, 92, 246, 0.1) 0%, transparent 20%),
+        radial-gradient(circle at 50% 30%, rgba(34, 197, 94, 0.05) 0%, transparent 20%);
+      z-index: -1;
+    }
+    
+    /* Animated floating elements */
+    .floating-element {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(67, 97, 238, 0.1);
+      animation: float 15s infinite ease-in-out;
+      z-index: -1;
+    }
+    
+    .floating-element:nth-child(1) {
+      width: 100px;
+      height: 100px;
+      top: 10%;
+      left: 5%;
+      animation-delay: 0s;
+    }
+    
+    .floating-element:nth-child(2) {
+      width: 150px;
+      height: 150px;
+      top: 70%;
+      left: 80%;
+      animation-delay: -5s;
+    }
+    
+    .floating-element:nth-child(3) {
+      width: 80px;
+      height: 80px;
+      top: 20%;
+      left: 85%;
+      animation-delay: -10s;
+    }
+    
+    .floating-element:nth-child(4) {
+      width: 120px;
+      height: 120px;
+      top: 75%;
+      left: 10%;
+      animation-delay: -7s;
+    }
+    
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0) rotate(0deg);
+      }
+      33% {
+        transform: translateY(-20px) rotate(10deg);
+      }
+      66% {
+        transform: translateY(20px) rotate(-10deg);
+      }
+    }
+    
+    .card {
+      width: 100%;
+      max-width: 480px;
+      background: rgba(30, 41, 59, 0.8);
+      backdrop-filter: blur(10px);
+      border-radius: 1.5rem;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(67, 97, 238, 0.2);
+      padding: 2.5rem;
+      opacity: 0;
+      transform: translateY(30px) scale(0.95);
+      animation: cardEntrance 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+      transform: rotate(45deg);
+      animation: shine 6s infinite;
+      pointer-events: none;
+    }
+    
+    @keyframes cardEntrance {
+      to { 
+        opacity: 1; 
+        transform: translateY(0) scale(1); 
+      }
+    }
+    
+    @keyframes shine {
+      0% {
+        transform: rotate(45deg) translateX(-100%);
+      }
+      20% {
+        transform: rotate(45deg) translateX(200%);
+      }
+      100% {
+        transform: rotate(45deg) translateX(200%);
+      }
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+    
+    .logo-icon { 
+      font-size: 2rem; 
+      color: var(--primary);
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 10px rgba(67, 97, 238, 0.5));
+      animation: pulse 2s infinite ease-in-out;
+    }
+    
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+    }
+    
+    .logo-text { 
+      font-size: 1.75rem; 
+      font-weight: 700; 
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      position: relative;
+    }
+    
+    .logo-text::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--accent-gradient);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.5s ease;
+    }
+    
+    .logo:hover .logo-text::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+    
+    .form-group { 
+      margin-bottom: 1.5rem; 
+      position: relative;
+      opacity: 0;
+      transform: translateX(-20px);
+      animation: fadeInRight 0.6s forwards;
+    }
+    
+    .form-group:nth-child(1) { animation-delay: 0.2s; }
+    .form-group:nth-child(2) { animation-delay: 0.3s; }
+    .form-group:nth-child(3) { animation-delay: 0.4s; }
+    .form-group:nth-child(4) { animation-delay: 0.5s; }
+    
+    @keyframes fadeInRight {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    .form-label {
+      display: block;
+      margin-bottom: .75rem;
+      font-size: .95rem;
+      font-weight: 500;
+      color: var(--light);
+      transition: all 0.3s ease;
+    }
+    
+    .form-control-container {
+      position: relative;
+    }
+    
+    .form-control {
+      width: 100%;
+      padding: 1rem 1rem 1rem 3rem;
+      background: rgba(15, 23, 42, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: .75rem;
+      font-size: 1rem;
+      color: var(--light);
+      transition: all 0.3s ease;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    
+    .form-control::placeholder {
+      color: rgba(255, 255, 255, 0.4);
+    }
+    
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.3), inset 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    
+    .input-icon {
+      position: absolute;
+      top: 50%;
+      left: 1rem;
+      transform: translateY(-50%);
+      color: var(--gray);
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      z-index: 2;
+    }
+    
+    .form-control:focus + .input-icon {
+      color: var(--primary);
+    }
+    
+    .btn {
+      width: 100%;
+      padding: 1.1rem;
+      border-radius: .75rem;
+      font-size: 1.05rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .75rem;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      background: var(--accent-gradient);
+      color: white;
+      box-shadow: 0 5px 15px rgba(67, 97, 238, 0.4);
+      opacity: 0;
+      animation: fadeInUp 0.6s 0.6s forwards;
+    }
+    
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: all 0.6s ease;
+    }
+    
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(67, 97, 238, 0.6);
+    }
+    
+    .btn:hover::before {
+      left: 100%;
+    }
+    
+    .btn:active {
+      transform: translateY(0);
+      box-shadow: 0 3px 10px rgba(67, 97, 238, 0.4);
+    }
+    
+    .btn:disabled { 
+      background: var(--gray); 
+      color: var(--gray-light); 
+      cursor: not-allowed; 
+      transform: none;
+      box-shadow: none;
+    }
+    
+    .btn:disabled:hover::before {
+      display: none;
+    }
+    
+    .alert {
+      padding: 1.1rem;
+      border-left: 4px solid var(--danger);
+      background: rgba(239, 68, 68, 0.15);
+      color: var(--light);
+      border-radius: .75rem;
+      margin-bottom: 1.5rem;
+      font-size: .95rem;
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      backdrop-filter: blur(5px);
+      animation: shake 0.5s ease;
+    }
+    
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-5px); }
+      40%, 80% { transform: translateX(5px); }
+    }
+    
+    .hidden { 
+      display: none; 
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.3s ease;
+    }
+    
+    .progress-box {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 1rem;
+      color: var(--light);
+      opacity: 0;
+      transform: scale(0.9);
+      transition: all 0.5s ease;
+    }
+    
+    .progress-box.show {
+      opacity: 1;
+      transform: scale(1);
+    }
+    
+    .progress-bar {
+      height: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 1rem;
+      position: relative;
+    }
+    
+    .progress-bar div {
+      height: 100%;
+      background: var(--accent-gradient);
+      width: 0%;
+      transition: width 0.5s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .progress-bar div::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      animation: progressShine 1.5s infinite;
+    }
+    
+    @keyframes progressShine {
+      0% {
+        transform: translateX(-100%);
+      }
+      100% {
+        transform: translateX(100%);
+      }
+    }
+    
+    .footer {
+      margin-top: 2.5rem;
+      text-align: center;
+      font-size: .9rem;
+      color: var(--gray);
+      opacity: 0;
+      animation: fadeIn 1s 1s forwards;
+    }
+    
+    .footer a { 
+      color: var(--primary-light); 
+      text-decoration: none;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    
+    .footer a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--primary-light);
+      transition: width 0.3s ease;
+    }
+    
+    .footer a:hover::after {
+      width: 100%;
+    }
+    
+    .upload-status {
+      font-size: 0.9rem;
+      margin-top: 0.75rem;
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      transition: all 0.3s ease;
+    }
+    
+    .status-success {
+      background: rgba(34, 197, 94, 0.15);
+      color: var(--success);
+    }
+    
+    .status-error {
+      background: rgba(239, 68, 68, 0.15);
+      color: var(--danger);
+    }
+    
+    .result-box {
+      background: rgba(15, 23, 42, 0.5);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s ease;
+    }
+    
+    .result-box.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .result-success {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+      color: var(--success);
+    }
+    
+    .result-success i {
+      animation: scaleIn 0.5s ease;
+    }
+    
+    @keyframes scaleIn {
+      0% {
+        transform: scale(0);
+      }
+      70% {
+        transform: scale(1.2);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+    
+    .info-box {
+      background: rgba(15, 23, 42, 0.7);
+      border-radius: 0.75rem;
+      padding: 1rem;
+      margin-top: 1rem;
+      font-family: monospace;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      overflow: auto;
+      max-height: 200px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    details {
+      margin-top: 1rem;
+      transition: all 0.3s ease;
+    }
+    
+    summary {
+      cursor: pointer;
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      background: rgba(15, 23, 42, 0.5);
+      transition: all 0.3s ease;
+    }
+    
+    summary:hover {
+      background: rgba(15, 23, 42, 0.7);
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 576px) {
+      .card {
+        padding: 1.75rem;
+      }
+      
+      .logo-text {
+        font-size: 1.5rem;
+      }
+      
+      .form-control {
+        padding: 0.875rem 0.875rem 0.875rem 2.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Floating background elements -->
+  <div class="floating-element"></div>
+  <div class="floating-element"></div>
+  <div class="floating-element"></div>
+  <div class="floating-element"></div>
+  
+  <div class="card">
+    <div class="logo">
+      <div class="logo-icon"><i class="fas fa-globe"></i></div>
+      <div class="logo-text">Create Apk By Razor Official</div>
+    </div>
+
+    <form id="builderForm" autocomplete="off">
+      <div class="form-group">
+        <label class="form-label" for="url">URL Website</label>
+        <div class="form-control-container">
+          <i class="fas fa-link input-icon"></i>
+          <input type="url" id="url" class="form-control" placeholder="https://example.com" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="appName">Nama Aplikasi</label>
+        <div class="form-control-container">
+          <i class="fas fa-mobile-alt input-icon"></i>
+          <input type="text" id="appName" class="form-control" placeholder="MyApp" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="email">Email Kamu</label>
+        <div class="form-control-container">
+          <i class="fas fa-envelope input-icon"></i>
+          <input type="email" id="email" class="form-control" placeholder="you@mail.com" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="iconFile">Ikon Aplikasi</label>
+        <div class="form-control-container">
+          <i class="fas fa-image input-icon"></i>
+          <input type="file" id="iconFile" class="form-control" accept="image/*" required style="padding-left: 3rem;">
+        </div>
+        <div id="uploadStatus" class="upload-status hidden"></div>
+      </div>
+
+      <button type="submit" class="btn btn-primary" id="submitBtn">
+        <i class="fas fa-hammer"></i> Build APK Premium - Razor Official
+      </button>
+    </form>
+
+    <div id="progress" class="progress-box hidden">
+      <p><i class="fas fa-spinner fa-spin"></i> <span id="progText">Mengunggah ikon…</span></p>
+      <div class="progress-bar"><div id="progBar"></div></div>
+    </div>
+
+    <div id="result" class="result-box hidden">
+      <p class="result-success">
+        <i class="fas fa-check-circle"></i> APK berhasil dibuat!
+      </p>
+      <a id="dlApk" class="btn btn-primary" href="#" download>
+        <i class="fas fa-download"></i> Download APK
+      </a>
+      <details style="margin-top:1rem;">
+        <summary>Info Lainnya</summary>
+        <pre id="keyInfo" class="info-box"></pre>
+      </details>
+    </div>
+
+    <div class="alert hidden" id="errorAlert">
+      <i class="fas fa-exclamation-circle"></i>
+      <span id="errorMsg"></span>
+    </div>
+
+    <div class="footer">
+      Powered by <a href="https://api.fikmydomainsz.xyz" target="_blank">Razor Official</a>
+    </div>
+  </div>
+
+  <script>
+    const $ = id => document.getElementById(id);
+    const form = $('builderForm');
+    const progr = $('progress');
+    const result = $('result');
+    const btn = $('submitBtn');
+    const progText = $('progText');
+    const progBar = $('progBar');
+    const errorAlert = $('errorAlert');
+    const errorMsg = $('errorMsg');
+    const uploadStatus = $('uploadStatus');
+
+    function showError(message) {
+      errorMsg.textContent = message;
+      errorAlert.classList.remove('hidden');
+      setTimeout(() => {
+        errorAlert.classList.add('hidden');
+      }, 5000);
+    }
+
+    async function uploadIcon(file) {
+      uploadStatus.classList.remove('hidden');
+      uploadStatus.textContent = 'Mengunggah ikon...';
+      uploadStatus.className = 'upload-status';
+
+      // list upload nyee
+      const uploadServices = [
+        {
+          name: 'ImgBB',
+          url: 'https://api.imgbb.com/1/upload?key=27b6cd66b77de7e91edcff653e2ba193', // kalo eror ganti key lu sndiri di https://api.imgbb.com/
+          method: 'POST',
+          body: (file) => {
+            const formData = new FormData();
+            formData.append('image', file);
+            return formData;
+          },
+          processResponse: async (response) => {
+            const data = await response.json();
+            return data.data.url;
+          }
+        },
+        {
+          name: 'Catbox',
+          url: 'https://catbox.moe/user/api.php',
+          method: 'POST',
+          body: (file) => {
+            const formData = new FormData();
+            formData.append('fileToUpload', file);
+            formData.append('reqtype', 'fileupload');
+            return formData;
+          },
+          processResponse: async (response) => {
+            return await response.text();
+          }
+        },
+        {
+          name: 'UploadCC',
+          url: 'https://upload.cc/index.php/upload',
+          method: 'POST',
+          body: (file) => {
+            const formData = new FormData();
+            formData.append('uploaded_file[]', file);
+            return formData;
+          },
+          processResponse: async (response) => {
+            const data = await response.json();
+            if (data.success && data.files && data.files.length > 0) {
+              return `https://upload.cc/${data.files[0].hash}`;
+            }
+            throw new Error('Upload gagal');
+          }
+        }
+      ];
+
+      for (const service of uploadServices) {
+        try {
+          uploadStatus.textContent = `Mencoba mengunggah ke ${service.name}...`;
+          
+          // Buat timeout untuk jawa
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 30000); 
+          
+          const response = await fetch(service.url, {
+            method: service.method,
+            body: service.body(file),
+            signal: controller.signal
+          });
+          
+          clearTimeout(timeoutId);
+          
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          
+          const imageUrl = await service.processResponse(response);
+          
+          if (!imageUrl) {
+            throw new Error('Tidak mendapatkan URL gambar');
+          }
+          
+          uploadStatus.textContent = `Berhasil mengunggah ke ${service.name}`;
+          uploadStatus.classList.add('status-success');
+          return imageUrl;
+        } catch (error) {
+          console.warn(`Upload ke ${service.name} gagal:`, error);
+        }
+      }
+      
+      throw new Error('Semua layanan upload gambar gagal. Silakan coba lagi nanti.');
+    }
+
+    function animateProgress(tMin = 3) {
+      const total = tMin * 60 * 1000;
+      const start = Date.now();
+      const iv = setInterval(() => {
+        const elap = Date.now() - start;
+        const pct = Math.min(90, Math.round((elap / total) * 100));
+        progBar.style.width = pct + '%';
+        if (pct === 90) clearInterval(iv);
+      }, 1000);
+      return () => clearInterval(iv); 
+    }
+
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      btn.disabled = true;
+      errorAlert.classList.add('hidden');
+      progr.classList.remove('hidden');
+      progr.classList.add('show');
+      result.classList.remove('show');
+      result.classList.add('hidden');
+      const stopProg = animateProgress(3);
+
+      try {
+        const url = $('url').value.trim();
+        const appName = $('appName').value.trim();
+        const email = $('email').value.trim();
+        const imgFile = $('iconFile').files[0];
+        
+        if (!imgFile) throw new Error('Pilih ikon dulu');
+
+        try {
+          new URL(url);
+        } catch (e) {
+          throw new Error('URL tidak valid');
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          throw new Error('Format email tidak valid');
+        }
+
+        progText.textContent = 'Mengunggah ikon…';
+        const iconUrl = await uploadIcon(imgFile);
+
+        progText.textContent = 'Proceessing Builder…';
+        const apiUrl = 'https://api.fikmydomainsz.xyz/tools/toapp/build-complete' +
+          '?url=' + encodeURIComponent(url) +
+          '&email=' + encodeURIComponent(email) +
+          '&appName=' + encodeURIComponent(appName) +
+          '&appIcon=' + encodeURIComponent(iconUrl);
+
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 374600); // Timeout 5 menit an 
+        
+        const response = await fetch(apiUrl, { signal: controller.signal });
+        clearTimeout(timeoutId);
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const job = await response.json();
+        if (!job.status) throw new Error(job.error || 'Build gagal');
+
+        stopProg();
+        progBar.style.width = '100%';
+        
+        // Add slight delay before showing result for better UX
+        setTimeout(() => {
+          $('dlApk').href = job.downloadUrl;
+          $('keyInfo').textContent =
+            `storePass : ${job.storePass}
+keyPass   : ${job.keyPass}
+keySha    : ${job.keySha}
+package   : ${job.packageName}`;
+          
+          progr.classList.remove('show');
+          setTimeout(() => {
+            progr.classList.add('hidden');
+            result.classList.remove('hidden');
+            setTimeout(() => {
+              result.classList.add('show');
+            }, 50);
+          }, 500);
+        }, 800);
+
+      } catch (err) {
+        stopProg();
+        progr.classList.remove('show');
+        setTimeout(() => {
+          progr.classList.add('hidden');
+        }, 500);
+        btn.disabled = false;
+        showError('Error: ' + err.message);
+        console.error(err);
+      }
+    });
+
+    $('iconFile').addEventListener('change', function() {
+      const file = this.files[0];
+      if (file) {
+        if (!file.type.match('image.*')) {
+          showError('File harus berupa gambar (PNG/JPG)');
+          this.value = '';
+          return;
+        }
+        
+        if (file.size > 5 * 1024 * 1024) {
+          showError('Ukuran file maksimal 5MB');
+          this.value = '';
+          return;
+        }
+        
+        uploadStatus.classList.remove('hidden');
+        uploadStatus.textContent = 'File siap diunggah: ' + file.name;
+        uploadStatus.className = 'upload-status status-success';
+      }
+    });
+  </script>
+</body>
+</html>
